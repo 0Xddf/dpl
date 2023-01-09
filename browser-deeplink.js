@@ -34,11 +34,11 @@
     var defaults = {
         iOS: {},
         android: {},
-        androidDisabled: true,
-        fallback: false,
+        androidDisabled: false,
+        fallback: true,
         fallbackToWeb: true,
-        delay: 1000,
-        delta: 500
+        delay: 0,
+        delta: 0
     }
 
     /**
