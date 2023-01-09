@@ -36,7 +36,7 @@
         android: {},
         androidDisabled: false,
         fallback: true,
-        fallbackToWeb: true,
+        fallbackToWeb: false,
         delay: 500,
         delta: 500
     }
