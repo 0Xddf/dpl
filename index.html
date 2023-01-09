@@ -1,38 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open in chrome</title>
-</head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <script src="browser-deeplink.js" type="text/javascript"></script>
+    <script type="text/javascript">
 
-<body>
-    <h1>This should open in chrome</h1>
-    <p id="current-browser"></p>
-    <script>
-        window.onload = () => {
-            const currentBrowser = document.getElementById('current-browser');
-
-
-            // case-insensitive substring predicate
-            const ciin = (x, y) => y.toLowerCase().indexOf(x.toLowerCase()) > -1;
-
-            const isChrome = ciin('chrome', navigator.userAgent);
-            const isSamsungBrowser = ciin('SamsungBrowser', navigator.userAgent);
-            const isAndroid = ciin('Android', navigator.userAgent);
-            const redirectCondition = isSamsungBrowser || (!isChrome && isAndroid);
-
-            currentBrowser.innerText = JSON.stringify({ redirectCondition, isChrome, isSamsungBrowser, isAndroid, UA: navigator.userAgent });
-
-            if (redirectCondition) {
-                let deeplink = `googlechrome://navigate?url=${window.location.toString()}`;
-                console.log('deeplink', deeplink.toString());
-                window.location = deeplink.toString();
-            }
+    deeplink.setup({
+        iOS: {
+            appId: "284882215",
+            appName: "facebook",
+        },
+        android: {
+            appId: "com.facebook.katana"
         }
-    </script>
-</body>
+    });
 
+    function clickHandler(uri) {
+        deeplink.open(uri);
+        return false;
+    }
+
+    </script>
+    <style>
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+    a {
+        font-family: monospace;
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 25px;
+        background: #060;
+        color:#fff;
+        text-align: center;
+        font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+    <a href="#" data-uri="fb://profile" onclick="clickHandler(this.dataset.uri)">open fb://profile</a>
+</body>
 </html>
