@@ -34,7 +34,7 @@
     var defaults = {
         iOS: {},
         android: {},
-        androidDisabled: false,
+        androidDisabled: true,
         fallback: false,
         fallbackToWeb: true,
         delay: 1000,
