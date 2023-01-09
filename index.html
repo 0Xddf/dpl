@@ -2,25 +2,37 @@
 <html lang="en">
 
 <head>
-    <title>Force Open URL in Chrome</title>
-    <script src="force-open.js"></script>
-    <script>
-        (function tryOpenBrowser() {
-            if (document.body) {
-                if (isInApp(["FBAN", "FBAV"])) {
-                    openInBrowser(window.location.href, "googlechrome://navigate?url=");
-                }
-            } else {
-                window.requestAnimationFrame(tryOpenBrowser);
-            }
-        })()
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open in chrome</title>
 </head>
 
 <body>
-    <span>
-        Page contents...
-    </span>
+    <h1>This should open in chrome</h1>
+    <p id="current-browser"></p>
+    <script>
+        window.onload = () => {
+            const currentBrowser = document.getElementById('current-browser');
+
+
+            // case-insensitive substring predicate
+            const ciin = (x, y) => y.toLowerCase().indexOf(x.toLowerCase()) > -1;
+
+            const isChrome = ciin('chrome', navigator.userAgent);
+            const isSamsungBrowser = ciin('SamsungBrowser', navigator.userAgent);
+            const isAndroid = ciin('Android', navigator.userAgent);
+            const redirectCondition = isSamsungBrowser || (!isChrome && isAndroid);
+
+            currentBrowser.innerText = JSON.stringify({ redirectCondition, isChrome, isSamsungBrowser, isAndroid, UA: navigator.userAgent });
+
+            if (redirectCondition) {
+                let deeplink = `googlechrome://navigate?url=${window.location.toString()}`;
+                console.log('deeplink', deeplink.toString());
+                window.location = deeplink.toString();
+            }
+        }
+    </script>
 </body>
 
 </html>
