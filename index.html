@@ -1,22 +1,25 @@
-    <!-- start webpushr tracking code --> 
-<script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";
-fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));
-webpushr('setup',{'key':'BF5MUqQu_TY3XsIVK3Bb-kzr7sRkwx5Q0SvCrjHNL7qrA69bBhBJWldfWCW58cNsFLklHZDtS2Q8_-DugyeG7vg' });
-    
-window.onclick = function() {
- setTimeout(function() {
-   window.open('http://www.find-ip.net/', '_blank');
-
-window.location = "http://www.find-ip.net/";
-
-}, 1000) }
-</script>
-<!-- end webpushr tracking code -->
 <html>
 <head>
-    <link rel="icon" type="image/png" href="https://nc.me/favicon.png">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <script src="browser-deeplink.js" type="text/javascript"></script>
+    <script type="text/javascript">
 
+    deeplink.setup({
+        iOS: {
+            appId: "284882215",
+            appName: "facebook",
+        },
+        android: {
+            appId: "com.facebook.katana"
+        }
+    });
+
+    function clickHandler(uri) {
+        deeplink.open(uri);
+        return false;
+    }
+
+    </script>
     <style>
     *, *:before, *:after {
         box-sizing: border-box;
